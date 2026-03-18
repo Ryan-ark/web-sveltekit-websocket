@@ -4,8 +4,10 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import { appConfig } from '$config/app';
 
-	let { data, children }: { data: LayoutData; children: import('svelte').Snippet } =
-		$props();
+	let {
+		data,
+		children
+	}: { data: LayoutData; children: import('svelte').Snippet } = $props();
 </script>
 
 <svelte:head>
@@ -36,6 +38,12 @@
 				class="rounded-full border border-line px-4 py-2 no-underline transition hover:border-brand hover:bg-brand-soft/40"
 				href="/projects">Projects</a
 			>
+			{#if data.auth.isAuthenticated}
+				<a
+					class="rounded-full border border-line px-4 py-2 no-underline transition hover:border-brand hover:bg-brand-soft/40"
+					href="/chat">Chat</a
+				>
+			{/if}
 			{#if data.auth.permissions.canCreateProjects}
 				<a
 					class="rounded-full border border-line px-4 py-2 no-underline transition hover:border-brand hover:bg-brand-soft/40"
